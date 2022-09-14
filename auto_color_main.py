@@ -224,7 +224,7 @@ def main(args):
                     optimizer_cd.zero_grad()
                 avg_loss += loss_decoder.detach().item()
                 lr = optimizer_cd.param_groups[0]["lr"]
-                if iter_step % 100 == 0:
+                if iter_step % 20 == 0:
                     print('epoch:{} iter:{} color deocder loss:{} lr:{}'.format(epoch, iter_step, loss_decoder, lr))
 
             if optimizer_sc is not None:
@@ -236,7 +236,7 @@ def main(args):
                     optimizer_sc.zero_grad()
                 avg_loss += loss_sc.detach().item()
                 lr = optimizer_sc.param_groups[0]["lr"]
-                if iter_step % 100 == 0:
+                if iter_step % 20 == 0:
                     print('epoch:{} iter:{} super color loss:{} lr:{}'.format(epoch, iter_step, loss_sc, lr))
             torch.cuda.synchronize()
 

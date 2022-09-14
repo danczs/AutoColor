@@ -1,5 +1,5 @@
 # AutoColor
-![pytorch](https://img.shields.io/badge/pytorch-v1.9.0-green.svg?style=plastic)
+![pytorch](https://img.shields.io/badge/pytorch-v1.10.0-green.svg?style=plastic)
 
 ## 简介
 该项目用于漫画的自动上色。 项目主要基于 [clip](https://github.com/Lednik7/CLIP-ONNX), [MAE](https://github.com/facebookresearch/mae) 和 [timm](https://github.com/rwightman/pytorch-image-models).
@@ -72,11 +72,11 @@ mae特征会被保存到```--output_path```文件夹，每张图片特征被保�
 ### 训练模型
 #### 训练 color deocder模型
 ```bash
-python auto_color_main.py --grad_state = '010'
-                          --output_dir = /path/to/output
+python auto_color_main.py --grad_state='010'
+                          --output_dir=/path/to/output
                           --mae_model_path=./models/mae_visualize_vit_base.pth \
                           --mae_feature_path=./features/mae_feature_names.txt \
-                          --clip_feature_path=./features/features/clip_features_subset.npy \
+                          --clip_feature_path=./features/clip_features_subset.npy \
                           --colordecoder_model_path=./models/color_decoder_pretrained.pth
 ```
 其中```--colordecoder_model_path```可以不设置，不设置时使用```mae_visualize_vit_base.pth```的decoder进行初始化。
@@ -89,19 +89,19 @@ a. 单独训练
 
 其输入输出为： 低分辨率彩图 + 高分辨率灰度图 --> 高分辨率彩图
 ```bash
-python auto_color_main.py --grad_state='001'
+python auto_color_main.py --grad_state='001'  \
                           --mae_feature_path=./features/mae_feature_names.txt \
-                          --clip_feature_path=./features/features/clip_features_subset.npy \
+                          --clip_feature_path=./features/clip_features_subset.npy \
                           --supercolor_only
 ```
 b. 基于训练好的color decoder的输出进行训练
 
 其输入输出为： color_decoder输出的低分辨率彩图 + 高分辨率灰度图 --> 高分辨率彩图
 ```bash
-python auto_color_main.py --grad_state='001'
-                          --batch_size=32
+python auto_color_main.py --grad_state='001' \
+                          --batch_size=32  \
                           --mae_feature_path=./features/mae_feature_names.txt \
-                          --clip_feature_path=./features/features/clip_features_subset.npy \
+                          --clip_feature_path=./features/clip_features_subset.npy \
                           --colordecoder_model_path=/path/to/trained_colordeocder_model.pth
 ```
 ## 模型部署
