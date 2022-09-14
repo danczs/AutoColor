@@ -3,7 +3,6 @@ from typing import Any, Union, List
 import onnxruntime
 import numpy as np
 from simple_tokenizer import SimpleTokenizer as _Tokenizer
-#
 
 class AutoColorDeployment:
     def __init__(self):

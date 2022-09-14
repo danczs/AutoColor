@@ -27,7 +27,7 @@ import torch.nn.functional as F
 def get_args_parser():
     parser = argparse.ArgumentParser('MAE fine-tuning for image classification', add_help=False)
 
-    parser.add_argument('--batch_size', default=32, type=int,
+    parser.add_argument('--batch_size', default=64, type=int,
                         help='Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus')
     parser.add_argument('--epochs', default=10, type=int)
 
@@ -97,18 +97,6 @@ def main(args):
     torch.manual_seed(seed)
     np.random.seed(seed)
     cudnn.benchmark = True
-
-    args.mae_model_path = './models/mae_visualize_vit_base.pth'
-    args.colordecoder_model_path = 'models/color_decoder_pretrained.pth'  #'./checkpoints_github/colordecoder_alpha0.5_lr0.005.pth'#
-    #args.colordecoder_model_path = './checkpoints_github/colordecoder_alpha0.5_lr0.005_p0.05.pth'
-    #args.supercolor_model_path = './checkpoints_github/supercolor_alpha0.5_lr0.1_p0.0.pth'
-    args.mae_feature_path = './features/mae_feature_names.txt'
-    args.clip_feature_path = './features/subset10_clip_feature.npy'
-    args.grad_state = '010'
-    args.batch_size = 64
-    args.colormask_prob = 0.1
-    #args.eval = True
-    #args.supercolor_only = True
 
     #dataset anda data loader
     dataset = build_dataset(args=args)

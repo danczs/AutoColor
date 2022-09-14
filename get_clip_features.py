@@ -1,7 +1,5 @@
 import argparse
 import clip
-
-#model, preprocess = clip.load("ViT-B/16", device=device)
 from util.datasets_clip import build_dataset_clip
 import torch
 import numpy as np
