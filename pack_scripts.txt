@@ -1,0 +1,1 @@
+python -m PyInstaller -F -w -i feather_icon.ico auto_color_gui.py --add-data "D:\\tools\\anaconda_file\\.conda\\envs\\cuda113\\Lib\\site-packages\\onnxruntime\\capi\\*.dll;onnxruntime\\capi"

@@ -503,13 +503,14 @@ if __name__ == '__main__':
             y = y // pen_size * pen_size
 
             items = image_canvas.find_overlapping(x + 1, y + 1, x + pen_size - 1, y + pen_size - 1)
+            scale_size =  canvas_state.base_pen_size * canvas_state.canvas_scale
             for i in range(len(items)):
                 tags = image_canvas.itemcget(items[i], 'tags')
 
                 if 'rect' in tags:
                     x0,y0,x1,y1 = image_canvas.coords(items[i])
-                    x0, y0 = int(x0 - 1) // canvas_state.base_pen_size, int(y0 - 1)//canvas_state.base_pen_size
-                    x1, y1 = int(x1 + 1) // canvas_state.base_pen_size,  int(y1 + 1)//canvas_state.base_pen_size
+                    x0, y0 = int(x0 - 1) // scale_size, int(y0 - 1) // scale_size
+                    x1, y1 = int(x1 + 1) // scale_size, int(y1 + 1) // scale_size
                     color_grids[x0:x1, y0:y1, :] = 0
                     image_canvas.delete(items[i])
 
@@ -563,12 +564,13 @@ if __name__ == '__main__':
             if x != last_x.get() or y != last_x.get():
                 items = image_canvas.find_overlapping(x + 1, y + 1, x + pen_size - 1, y + pen_size - 1)
                 # print(items)
+                scale_size = canvas_state.base_pen_size * canvas_state.canvas_scale
                 for i in range(len(items)):
                     tags = image_canvas.itemcget(items[i], 'tags')
                     if 'rect' in tags:
                         x0, y0, x1, y1 = image_canvas.coords(items[i])
-                        x0, y0 = int(x0 - 1) // canvas_state.base_pen_size, int(y0 - 1) // canvas_state.base_pen_size
-                        x1, y1 = int(x1 + 1) // canvas_state.base_pen_size, int(y1 + 1) // canvas_state.base_pen_size
+                        x0, y0 = int(x0 - 1) // scale_size , int(y0 - 1) // scale_size
+                        x1, y1 = int(x1 + 1) // scale_size, int(y1 + 1) // scale_size
                         color_grids[x0:x1, y0:y1, :] = 0
                         image_canvas.delete(items[i])
 
