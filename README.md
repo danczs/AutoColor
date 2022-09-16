@@ -3,6 +3,9 @@
 
 ## 简介
 该项目用于漫画的自动上色。 项目主要基于 [clip](https://github.com/Lednik7/CLIP-ONNX), [MAE](https://github.com/facebookresearch/mae) 和 [timm](https://github.com/rwightman/pytorch-image-models).
+![frame_work](./frame_work.png)
+![gui](./gui.png)
+
 
 ## 使用说明
 ### 方法1、直接下载打包好的软件（适用win10系统)
